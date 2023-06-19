@@ -1,5 +1,6 @@
 #include "DHT.h"
-int suhu = 30.00;
+
+float suhu = 30.00;
 #define DHTPIN 5 // Definisikan pin yang digunakan untuk sensor DHT11
 const int led = 4;
 #define DHTTYPE DHT11
@@ -11,7 +12,7 @@ int soilMoistureValue = A0;
 int soilmoisturepercent = 0;
 
 unsigned long previousMillis = 0;
-const unsigned long interval = 60000; // Waktu interval 1 menit (60.000 milidetik)
+const unsigned long interval = 6000; // Waktu interval 6 detik (6.000 milidetik)
 
 bool ledState = false;
 bool isSensorConditionMet = false; // Menyimpan status apakah salah satu atau kedua sensor memenuhi syarat
@@ -44,7 +45,7 @@ void loop() {
   }
 
   // Periksa apakah salah satu atau kedua sensor memenuhi syarat
-  if (t >= suhu || soilmoisturepercent >= 79) { // Memperbaiki kondisi sensor kelembapan terbalik
+  if (t >= suhu || soilmoisturepercent >= 30) { // Memperbaiki kondisi sensor kelembapan
     isSensorConditionMet = true;
   } else {
     isSensorConditionMet = false;
